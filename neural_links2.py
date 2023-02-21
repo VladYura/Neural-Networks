@@ -1,9 +1,8 @@
 import numpy as np
 
 
-def sigmoid(x):  # Сигмоида
-    # Функция активации
-    return 1 / (1 + np.exp(-x))
+def sigmoid(x):  # Функция активации
+    return 1 / (1 + np.exp(-x))  # Сигмоида
 
 
 def def_sigmoid(x):  # Производная сигмоиды
@@ -11,11 +10,11 @@ def def_sigmoid(x):  # Производная сигмоиды
     return fx * (1 - fx)
 
 
-def mse_loss(y_true, y_pred):
+def mse_loss(y_true, y_pred):  # Функция средней квадратичной ошибки
     return ((y_true - y_pred) ** 2).mean()
 
 
-class OurNeuralNetwork:
+class NeuralNetwork:
 
     def __init__(self):
         # Веса
@@ -38,7 +37,7 @@ class OurNeuralNetwork:
         self.b3 = np.random.normal()
         self.b4 = np.random.normal()
 
-    def feedforward(self, x):
+    def feedforward(self, x):  # Ответ
 
         h1 = sigmoid(self.w1 * x[0] + self.w4 * x[1] + self.w7 * x[2] + self.b1)
         h2 = sigmoid(self.w2 * x[0] + self.w5 * x[1] + self.w8 * x[2] + self.b2)
@@ -47,9 +46,9 @@ class OurNeuralNetwork:
 
         return o1
 
-    def train(self, data, all_y_trues):
+    def train(self, data, all_y_trues):  # Тренировка
 
-        learn_rate = 0.1
+        learn_rate = 0.1  # Константа скорости обучения (learning rate)
         epochs = 1000  # Сколько раз пройти по всему набору данных
 
         for epoch in range(epochs):
@@ -146,7 +145,7 @@ all_y_trues = np.array([
 ])
 
 # Обучаем нашу нейронную сеть!
-network = OurNeuralNetwork()
+network = NeuralNetwork()
 network.train(data, all_y_trues)
 
 # Делаем пару предсказаний
